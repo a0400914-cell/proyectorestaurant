@@ -1,0 +1,73 @@
+/* Variables de Colores basadas en Figma */
+:root {
+  --bg-crema: #F9F6F0;
+  --color-burdeos: #4A2E2B;
+  --color-burdeos-hover: #36211F;
+  --color-terracota: #D98A5B;
+  --texto-oscuro: #2C2C2C;
+  --card-bg: #FFFFFF;
+}
+
+body {
+  background-color: var(--bg-crema) !important;
+  color: var(--texto-oscuro);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Encabezados */
+h1, h2, h3, h4, h5, .brand-title {
+  color: var(--color-burdeos);
+  font-weight: 700;
+}
+
+/* Botones con estilo Figma */
+.btn-primary-figma {
+  background-color: var(--color-burdeos) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 10px 24px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary-figma:hover {
+  background-color: var(--color-burdeos-hover) !important;
+}
+
+/* Estilo para las Tarjetas */
+.card-figma {
+  background-color: var(--card-bg);
+  border: 1px solid rgba(74, 46, 43, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.card-figma:hover {
+  transform: translateY(-2px);
+}
+
+/* Selector de Mesas */
+.mesa-box {
+  border: 2px solid #E0E0E0;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #FFF;
+  transition: all 0.2s ease;
+}
+
+.mesa-box.seleccionada {
+  border-color: var(--color-terracota);
+  background-color: #FDF6F0;
+}
+
+.mesa-box.reservada {
+  border-color: #DC3545;
+  background-color: #FDF2F2;
+  opacity: 0.7;
+}
