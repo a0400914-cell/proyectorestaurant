@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import PaymentSection from './PaymentSection'; // Importamos la pantallita de pago que creamos
 
 export default function Reservations({ user, existingReservations, onAddReservation, tables }) {
   const [selectedTable, setSelectedTable] = useState('');
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
-  const [dish, setDish] = useState('Lomo Saltado'); // Estado para el plato seleccionado
+  const [dish, setDish] = useState('Lomo Saltado');
+  
+  // Nuevo estado para controlar cuándo mostrar la pantalla de pago
+  const [showPayment, setShowPayment] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,12 +23,28 @@ export default function Reservations({ user, existingReservations, onAddReservat
       date: date,
       time: time,
       tableId: selectedTable,
-      dish: dish // Guardamos el plato elegido
+      dish: dish
     };
 
     onAddReservation(newReservation);
-    alert(`¡Reserva confirmada con éxito para la ${selectedTable} con consumo de ${dish}!`);
+    
+    // En lugar de solo un alert, ahora activamos la vista de pago
+    setShowPayment(true);
   };
+
+  // Si showPayment es true, renderizamos la pantalla de pago con sus 3 métodos (Yape, Plin, Paypal)
+  if (showPayment) {
+    return (
+      <PaymentSection 
+        onBack={() => {
+          setShowPayment(false);
+          setSelectedTable('');
+          setDate('');
+          setTime('');
+        }} 
+      />
+    );
+  }
 
   return (
     <div className="container py-4">
@@ -69,7 +89,6 @@ export default function Reservations({ user, existingReservations, onAddReservat
                 </div>
               </div>
 
-              {/* NUEVO: Selector de platos de la carta */}
               <div className="mb-3">
                 <label className="form-label">🍽️ Plato Destacado / Consumo previo</label>
                 <select 

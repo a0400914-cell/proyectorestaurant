@@ -83,10 +83,14 @@ export default function App() {
               element={
                 user && user.role === 'admin' ? (
                   <AdminPanel 
-                    reservations={reservations} 
-                    tables={tables} 
-                    setTables={setTables} 
-                  />
+                  reservations={reservations} 
+                  tables={tables} 
+                  setTables={setTables} 
+                  onUpdateTableStatus={(idMesa, nuevoEstado) => {
+                  setTables(tables.map(t => t.id === idMesa ? { ...t, status: nuevoEstado } : t));
+                  }}
+                 />
+                 
                 ) : (
                   <Navigate to="/" replace />
                 )
